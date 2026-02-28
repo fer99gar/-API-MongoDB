@@ -1,0 +1,117 @@
+{
+	"info": {
+		"_postman_id": "api-mongodb-collection",
+		"name": "API MongoDB",
+		"description": "Colección para la API REST conectada a MongoDB. Base URL por defecto: http://127.0.0.1:8000",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://127.0.0.1:8000"
+		},
+		{
+			"key": "item_id",
+			"value": ""
+		}
+	],
+	"item": [
+		{
+			"name": "General",
+			"item": [
+				{
+					"name": "Root - Bienvenida",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/",
+							"host": ["{{base_url}}"],
+							"path": [""]
+						},
+						"description": "Health check y mensaje de bienvenida. Incluye enlace a /docs."
+					}
+				},
+				{
+					"name": "Health - Estado API y MongoDB",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/health",
+							"host": ["{{base_url}}"],
+							"path": ["health"]
+						},
+						"description": "Verifica que la API y la conexión a MongoDB estén disponibles."
+					}
+				}
+			]
+		},
+		{
+			"name": "Items",
+			"item": [
+				{
+					"name": "Listar items",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/items",
+							"host": ["{{base_url}}"],
+							"path": ["items"]
+						},
+						"description": "Obtiene todos los items de la colección."
+					}
+				},
+				{
+					"name": "Crear item",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Mi item\",\n  \"description\": \"Descripción opcional\",\n  \"price\": 19.99\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/items",
+							"host": ["{{base_url}}"],
+							"path": ["items"]
+						},
+						"description": "Crea un nuevo item. name es obligatorio; description y price son opcionales."
+					}
+				},
+				{
+					"name": "Obtener item por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/items/{{item_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["items", "{{item_id}}"]
+						},
+						"description": "Obtiene un item por su ID. Usa la variable de colección item_id o pega un ObjectId después de crear un item."
+					}
+				},
+				{
+					"name": "Eliminar item",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/items/{{item_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["items", "{{item_id}}"]
+						},
+						"description": "Elimina un item por su ID."
+					}
+				}
+			]
+		}
+	]
+}
