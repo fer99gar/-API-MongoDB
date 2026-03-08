@@ -44,6 +44,19 @@
 						},
 						"description": "Verifica que la API y la conexión a MongoDB estén disponibles."
 					}
+				},
+				{
+					"name": "Health - Estado PostgreSQL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/health/postgres",
+							"host": ["{{base_url}}"],
+							"path": ["health", "postgres"]
+						},
+						"description": "Verifica que la conexión a PostgreSQL (POSTGRES_URL del .env) esté disponible."
+					}
 				}
 			]
 		},
